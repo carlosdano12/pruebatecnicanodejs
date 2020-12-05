@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./css/estyloForm.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="formulario">
+
+        <div class="fo">
+            <h1>Seleccione un vehiculo para Habilitarlo o Eliminarlo.</h1>
+            <form id="formu" method="POST">
+
+                <input type="hidden" id="id_usuario" name="id_usuario" value="<%=id_usuario%>">
+                <input type="hidden" id="id_vehiculo" name="id_vehiculo" value="0">
+                <button id="btnHabilitar" style="visibility: hidden;"
+                    class="btn btn-primary btn-block btn-large">Habilitar</button><br>
+                <button id="btnEliminar" style="visibility: hidden;"
+                    class="btn btn-primary btn-block btn-large">Eliminar</button><br>
+                <button id="btnAtras" class="btn btn-primary btn-block btn-large">Atras</button>
+            </form>
+        </div>
+        <div id="divT" class="tabla">
+            <table id="tablaVeh">
+                <tr>
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Color</th>
+                    <th>Detalle</th>
+                    <th>Imagen</th>
+                    <th>Entrada</th>
+                    <th>Valor</th>
+                </tr>
+
+                <% for (var i=0; i< vehiculos.length; i++){ %>
+                <tr>
+                    <input type="hidden" id="t_id_vehiculo" value="<%=vehiculos[i].id_vehiculo%>">
+                    <input type="hidden" id="t_imagen" value="<%=vehiculos[i].imagen%>">
+                    <td><%= vehiculos[i].placa %></td>
+                    <td><%= vehiculos[i].marca %></td>
+                    <td><%= vehiculos[i].modelo %></td>
+                    <td><%= vehiculos[i].color %></td>
+                    <td><%= vehiculos[i].detalle %></td>
+                    <td><img src="http://localhost:3000/api_vehiculos/getImage/<%=vehiculos[i].imagen %>" alt=""
+                            width="100px" height="100px" style="margin: 1px 0 0 1px;"></td>
+                    <td><%= new Date(vehiculos[i].fecha_insert).toLocaleString('es-CO', {
+
+                        hour12 : false,
+            
+                        timeZone: 'America/Bogota'
+            
+                    }) %></td>
+                    <td><%= vehiculos[i].valor %></td>
+                </tr>
+                <% } %>
+
+            </table>
+        </div>
+        <div>
+            <a class="boton_personalizado" href='/logout'>Cerrar sesion</a>
+        </div>
+    </div>
+    <script src="js/habVeh.js"></script>
+</body>
+
+</html>

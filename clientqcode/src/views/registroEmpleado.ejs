@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./css/estyloForm.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="formulario">
+
+        <div class="fo">
+            <h1>Registrar Empleado</h1>
+            <form id="formu" method="POST">
+                Ingrese el nombre del empleado:<br>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre del empleado"
+                    required="required" /><br><br>
+                Ingrese el apellido del empleado: <br>
+                <input type="text" id="apellido" name="apellido" placeholder="Apellido del empleado"
+                    required="required" /><br><br>
+                ingrese un numero de telefono:<br>
+                <input type="text" id="telefono" name="telefono" placeholder="Numero de telefono"><br><br>
+                Ingrese un correo electronico:<br>
+                <input type="email" id="correo" name="correo" placeholder="Correo electronico"><br><br>
+                Ingrese la contraseña:<br>
+                <input type="password" name="contrasena" placeholder="Contraseña"><br><br>
+                <input type="hidden" id="id_rol" name="id_rol" value="2">
+                <input type="hidden" id="id_usuario" name="id_usuario" value="0">
+                <!--<input type="text" hidden name="idUsuario" placeholder="Identificacion Usuario"><br><br>-->
+                <button id="btnGuardar" class="btn btn-primary btn-block btn-large">Guardar</button>
+                <p><button id="btnEliminar" style="visibility: hidden;"
+                        class="btn btn-block btn-large">Eliminar</button></p>
+            </form>
+        </div>
+        <div class="tabla">
+            <table id="tablaEmp">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Telefono</th>
+                    <th>Correo electronico</th>
+                </tr>
+                <% for (var i=0; i< empleados.length; i++){ %>
+                <tr>
+                    <input type="hidden" id="t_id_usuario" value="<%=empleados[i].id_usuario%>">
+                    <td><%= empleados[i].nombre %></td>
+                    <td><%= empleados[i].apellido %></td>
+                    <td><%= empleados[i].telefono %></td>
+                    <td><%= empleados[i].correo %></td>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+        <div>
+            <a class="boton_personalizado" href='/logout' >Cerrar sesion</a>
+        </div>
+    </div>
+    <script src="js/regEmp.js"></script>
+</body>
+
+</html>
